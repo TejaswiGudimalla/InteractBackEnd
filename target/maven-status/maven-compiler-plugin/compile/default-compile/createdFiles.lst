@@ -1,0 +1,4 @@
+com\niit\interact\dao\UserDAO.class
+com\niit\interact\daoimpl\UserDAOImpl.class
+com\niit\interact\config\ApplicationContextConfig.class
+com\niit\interact\model\User.class
