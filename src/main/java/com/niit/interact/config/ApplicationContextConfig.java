@@ -7,12 +7,24 @@ import javax.sql.DataSource;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.niit.interact.model.Blog;
+import com.niit.interact.model.BlogLikes;
+import com.niit.interact.model.Forum;
+import com.niit.interact.model.ForumComment;
+import com.niit.interact.model.Friend;
+import com.niit.interact.model.Job;
 import com.niit.interact.model.User;
 
+@Configuration
+@ComponentScan("com.niit.interact")
+@EnableTransactionManagement
 public class ApplicationContextConfig {
 	
 	@Bean(name="dataSource")
@@ -40,7 +52,14 @@ public class ApplicationContextConfig {
 	public SessionFactory getSessionFactory(DataSource dataSource) {
 		LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
 		sessionBuilder.addProperties(getHibernateProperties());
+		
 		sessionBuilder.addAnnotatedClasses(User.class);
+		sessionBuilder.addAnnotatedClasses(Blog.class);
+		sessionBuilder.addAnnotatedClasses(Friend.class);
+		sessionBuilder.addAnnotatedClasses(Job.class);
+		sessionBuilder.addAnnotatedClasses(Forum.class);
+		sessionBuilder.addAnnotatedClasses(ForumComment.class);
+		sessionBuilder.addAnnotatedClasses(BlogLikes.class);
 		System.out.println("Session");
 		
 		return sessionBuilder.buildSessionFactory();

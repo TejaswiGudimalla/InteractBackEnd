@@ -27,17 +27,17 @@ http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 	<beans:bean id="sessionFactory"
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<beans:property name="dataSource" ref="dataSource" />
-		<!-- <beans:property name="annotatedClasses">
+		<beans:property name="annotatedClasses">
 			<beans:list>
 				<beans:value>com.niit.interact.model.Blog</beans:value>
 			</beans:list>
-		</beans:property> -->
+		</beans:property>
 
 		<beans:property name="hibernateProperties">
 			<beans:props>
 				<beans:prop key="hibernate.dialect">org.hibernate.dialect.OracleDialect
 				</beans:prop>
-				<!-- <beans:prop key="hibernate.hbm2ddl.auto">update</beans:prop> -->
+				<beans:prop key="hibernate.hbm2ddl.auto">update</beans:prop>
 				<beans:prop key="hibernate.show_sql">true</beans:prop>
 				<beans:prop key="hibernate.connection.SetBigStringTryClob">true</beans:prop>
 				<beans:prop key="hibernate.jdbc.batch_size">0</beans:prop>
@@ -51,7 +51,7 @@ http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
 		<beans:property name="sessionFactory" ref="sessionFactory" />
 	</beans:bean>
-	<!-- <beans:bean id="blogDAO" class="com.niit.chatusbackend.model.BlogDAOImpl">
+	<beans:bean id="blogDAO" class="com.niit.chatusbackend.model.BlogDAOImpl">
 		<beans:property name="sessionFactory" ref="sessionFactory" />
-	</beans:bean> -->
+	</beans:bean>
 </beans>
