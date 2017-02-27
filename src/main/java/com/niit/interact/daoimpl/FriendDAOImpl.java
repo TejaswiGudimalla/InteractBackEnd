@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.niit.interact.dao.FriendDAO;
 import com.niit.interact.model.Friend;
 
+@SuppressWarnings({ "rawtypes", "unchecked", "deprecation" })
 @Repository
 public class FriendDAOImpl implements FriendDAO {
 	
@@ -43,7 +44,6 @@ public class FriendDAOImpl implements FriendDAO {
 		}
 	}
    
-   @SuppressWarnings({ "rawtypes", "unchecked" })
    @Transactional
    public Friend newrequest(int userid,int friendid) {
    	String hql="from Friend where userid='"+userid+"' and friendid='"+friendid+"'";

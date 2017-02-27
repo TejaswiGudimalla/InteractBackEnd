@@ -1,5 +1,6 @@
 package com.niit.interact.model;
 
+import java.sql.Clob;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -20,7 +21,7 @@ public class Blog {
 	private String title;
 	private int userid;
 	private Date doc;
-	private String content;
+	private Clob content;
 	private Integer bloglike;
 	private String status;
 	public String getTitle() {
@@ -41,10 +42,10 @@ public class Blog {
 	public void setDoc(Date doc) {
 		this.doc = doc;
 	}
-	public String getContent() {
+	public Clob getContent() {
 		return content;
 	}
-	public void setContent(String content) {
+	public void setContent(Clob content) {
 		this.content = content;
 	}
 	public Integer getBloglike() {

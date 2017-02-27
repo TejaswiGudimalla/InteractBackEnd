@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.niit.interact.dao.ForumDAO;
 import com.niit.interact.model.Forum;
 
+@SuppressWarnings({"deprecation", "unchecked", "rawtypes"})
 @Repository
 public class ForumDAOImpl implements ForumDAO{
 	
@@ -44,17 +45,14 @@ public class ForumDAOImpl implements ForumDAO{
 		}
 	}
 
-	@SuppressWarnings("deprecation")
 	@Transactional
 	public List<Forum> list() {
 		Criteria c=sessionFactory.getCurrentSession().createCriteria(Forum.class);
-		@SuppressWarnings("unchecked")
 		List<Forum> list=c.list();
 		return list;
 	}
     
 	@Transactional
-	@SuppressWarnings({ "deprecation", "unchecked", "rawtypes" })
 	public Forum getforum(int id) {
 		String hql = "from Forum where id= "+ "'"+ id+"'" ;
 		Query query=sessionFactory.getCurrentSession().createQuery(hql);
@@ -70,7 +68,7 @@ public class ForumDAOImpl implements ForumDAO{
 		}
 	}
 	
-    @Transactional
+	@Transactional
     public List<Forum> userlist() {
     	String hql= "from Forum where status='a'";
     	Query query = sessionFactory.getCurrentSession().createQuery(hql);

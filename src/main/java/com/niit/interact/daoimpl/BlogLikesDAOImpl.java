@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.niit.interact.dao.BlogLikesDAO;
 import com.niit.interact.model.BlogLikes;
 
+@SuppressWarnings({ "unchecked", "deprecation" })
 @Repository
 public class BlogLikesDAOImpl implements BlogLikesDAO {
 	
@@ -46,6 +47,7 @@ public class BlogLikesDAOImpl implements BlogLikesDAO {
 		}
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Transactional
 	public BlogLikes list(int userid, int blogid) {
 		String hql="from Bloglikes where blogid='"+blogid+"' and userid='"+userid+"'";
@@ -63,7 +65,6 @@ public class BlogLikesDAOImpl implements BlogLikesDAO {
 		
 	}
 
-	@SuppressWarnings({ "unchecked", "deprecation" })
 	@Transactional
 	public List<BlogLikes> bloglist(int bid) {
 		Criteria c=sessionFactory.getCurrentSession().createCriteria(BlogLikes.class);

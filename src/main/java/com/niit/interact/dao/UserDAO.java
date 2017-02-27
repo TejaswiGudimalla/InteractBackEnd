@@ -9,15 +9,19 @@ import com.niit.interact.model.User;
 @Repository
 public interface UserDAO {
 
-    public List<User> list();
-	
-	public User get(int id);
-	
-	public User validate(int id, String password);
-	
 	public boolean saveOrUpdate(User user);
-	
+
 	public boolean delete(User user);
+
+	public List<User> list();
+
+	public List<User> getuser(int id);
+
+	public User oneuser(int id);
+
+	public User authuser(String username, String password);
+
+	public User profileof(String username);
 	
-	public User get(String username);
+	public List<User> nonfriends(int id);
 }

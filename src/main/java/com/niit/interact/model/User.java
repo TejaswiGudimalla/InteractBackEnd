@@ -31,6 +31,8 @@ public class User {
 	private String role;
 	
 	private char is_online;
+	
+	private byte[] image;
 
 	public String getName() {
 		return name;
@@ -94,6 +96,14 @@ public class User {
 
 	public void setIs_online(char is_online) {
 		this.is_online = is_online;
+	}
+
+	public byte[] getImage() {
+		return image;
+	}
+
+	public void setImage(byte[] image) {
+		this.image = image;
 	}
 	
 }
