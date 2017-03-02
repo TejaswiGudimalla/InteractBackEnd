@@ -8,8 +8,8 @@ public interface FriendDAO {
 	
 	public boolean saveOrUpdate(Friend friend);
 	public boolean delete(Friend friend);
-	public Friend newrequest(int userid,int friendid);
-	public List<Friend> getfriendlist(int userid);
+	public Friend newrequest(String userid,int friendid);
+	public List<Friend> getfriendlist(String userid);
 	public List<Friend> getrequestlist(int userid);
 	public List<Friend> setonline(int userid);
 

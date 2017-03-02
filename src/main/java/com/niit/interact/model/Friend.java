@@ -15,15 +15,15 @@ public class Friend {
 	@Id
 	@GeneratedValue
 	private int id;
-	private int userid;
+	private String userid;
 	private int friendid;
 	private char status;
 	private char isonline;
 	
-	public int getUserid() {
+	public String getUserid() {
 		return userid;
 	}
-	public void setUserid(int userid) {
+	public void setUserid(String userid) {
 		this.userid = userid;
 	}
 	public int getFriendid() {
