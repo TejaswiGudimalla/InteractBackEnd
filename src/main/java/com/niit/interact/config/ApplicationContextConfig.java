@@ -27,15 +27,17 @@ import com.niit.interact.model.User;
 @EnableTransactionManagement
 public class ApplicationContextConfig {
 	
-	@Bean(name="dataSource")
+	@Bean(name = "dataSource")
 	public DataSource getDataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
 		dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:XE");
 		dataSource.setUsername("COLLAB_DB");
 		dataSource.setPassword("hr");
-		System.out.println("Datasource");
+
+		System.out.println("DataBase is connected.........!");
 		return dataSource;
+
 	}
 
 	private Properties getHibernateProperties() {
@@ -45,14 +47,15 @@ public class ApplicationContextConfig {
 		properties.put("hibernate.hbm2ddl.auto", "update");
 		System.out.println("Hibernate Properties");
 		return properties;
+
 	}
 
 	@Autowired
 	@Bean(name = "sessionFactory")
 	public SessionFactory getSessionFactory(DataSource dataSource) {
 		LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
+
 		sessionBuilder.addProperties(getHibernateProperties());
-		
 		sessionBuilder.addAnnotatedClasses(User.class);
 		sessionBuilder.addAnnotatedClasses(Blog.class);
 		sessionBuilder.addAnnotatedClasses(Friend.class);
@@ -60,17 +63,18 @@ public class ApplicationContextConfig {
 		sessionBuilder.addAnnotatedClasses(Forum.class);
 		sessionBuilder.addAnnotatedClasses(ForumComment.class);
 		sessionBuilder.addAnnotatedClasses(BlogLikes.class);
-		System.out.println("Session");
-		
+		 
+		System.out.println("Session is created................!");
+
 		return sessionBuilder.buildSessionFactory();
-		
+
 	}
 
 	@Autowired
 	@Bean(name = "transactionManager")
 	public HibernateTransactionManager getTransactionManager(SessionFactory sessionFactory) {
 		HibernateTransactionManager transactionManager = new HibernateTransactionManager(sessionFactory);
-		System.out.println("Transaction");
+		System.out.println("Transaction is crated............!");
 		return transactionManager;
 	}
 

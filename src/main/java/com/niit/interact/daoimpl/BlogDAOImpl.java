@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.niit.interact.dao.BlogDAO;
 import com.niit.interact.model.Blog;
 
-@Repository
+@Repository(value = "blogDAO")
 public class BlogDAOImpl implements BlogDAO {
 
 	@Autowired
@@ -68,6 +68,7 @@ public class BlogDAOImpl implements BlogDAO {
 	}
 
 	@SuppressWarnings({ "deprecation", "unchecked", "rawtypes" })
+	@Transactional
 	public List<Blog> userlist() {
 		String hql= "from Blog where status='a'";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);

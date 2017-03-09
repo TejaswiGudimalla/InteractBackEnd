@@ -1,4 +1,4 @@
-package com.niit.interact.config;
+/*package com.niit.interact.config;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -9,7 +9,7 @@ import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 
 @Configuration
 @EnableWebSocketMessageBroker
-@ComponentScan(basePackages="com.niit")
+@ComponentScan(basePackages="com.niit.interact")
 public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
 
 	@Override
@@ -24,3 +24,4 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
 	}
 	
 }
+*/
