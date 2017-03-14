@@ -8,30 +8,23 @@ import javax.persistence.Table;
 import org.springframework.stereotype.Component;
 
 @Entity
-@Table(name="UserInteract")
+@Table(name = "UserInteract")
 @Component
-public class User {
-	
+public class Users {
+
 	@Id
 	@GeneratedValue
 	private int id;
-	
 	private String name;
-	
 	private String password;
-	
 	private String username;
-	
 	private String email;
-	
 	private String mobile;
-	
+	private String address;
+	private String gender;
 	private char status;
-	
 	private String role;
-	
-	private char is_online;
-	
+	private char isonline;
 	private byte[] image;
 
 	public String getName() {
@@ -41,7 +34,7 @@ public class User {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	public int getId() {
 		return id;
 	}
@@ -98,12 +91,12 @@ public class User {
 		this.role = role;
 	}
 
-	public char getIs_online() {
-		return is_online;
+	public char getIsonline() {
+		return isonline;
 	}
 
-	public void setIs_online(char is_online) {
-		this.is_online = is_online;
+	public void setIs_online(char isonline) {
+		this.isonline = isonline;
 	}
 
 	public byte[] getImage() {
@@ -113,5 +106,21 @@ public class User {
 	public void setImage(byte[] image) {
 		this.image = image;
 	}
-	
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
 }

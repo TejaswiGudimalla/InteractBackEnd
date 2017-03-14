@@ -22,6 +22,7 @@ import com.niit.interact.model.BlogLikes;
 
 @RestController
 public class BlogController {
+	
 	@Autowired
 	private BlogDAO blogDAO;
 
@@ -59,7 +60,7 @@ public class BlogController {
 	@DeleteMapping(value = "/deleteblog/{blogid}")
 	public ResponseEntity<Blog> deleteblog(Blog blog, @PathVariable("blogid") int blogid) {
 		Blog blog1 = blogDAO.get(blogid);
-		blogDAO.delete(blog);
+		blogDAO.delete(blog1);
 		return new ResponseEntity<Blog>(blog, HttpStatus.OK);
 	}
 

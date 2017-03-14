@@ -4,24 +4,24 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.niit.interact.model.User;
+import com.niit.interact.model.Users;
 
 @Repository
 public interface UserDAO {
 
-	public boolean saveOrUpdate(User user);
+	public boolean saveOrUpdate(Users user);
 
-	public boolean delete(User user);
+	public boolean delete(Users user);
 
-	public List<User> list();
+	public List<Users> list();
 
-	public List<User> getuser(int id);
+	public List<Users> getuser(int id);
 
-	public User oneuser(int id);
+	public Users oneuser(int id);
 
-	public User authuser(String username, String password);
+	public Users authuser(String username, String password);
 
-	public User profileof(String username);
+	public Users profileof(String username);
 	
-	public List<User> nonfriends(int id);
+	public List<Users> nonfriends(int id);
 }

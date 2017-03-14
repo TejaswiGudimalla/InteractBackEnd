@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.niit.interact.dao.FriendDAO;
 import com.niit.interact.dao.UserDAO;
 import com.niit.interact.model.Friend;
-import com.niit.interact.model.User;
+import com.niit.interact.model.Users;
 
 @RestController
 public class LoginController {
@@ -25,8 +25,8 @@ public class LoginController {
 	FriendDAO friendDAO;
 
 	@GetMapping("/login/{username}/{password}")
-	public ResponseEntity<User> login( @PathVariable("username") String username,@PathVariable("password") String password ,HttpSession session){
-		User user = userDAO.authuser(username,password);
+	public ResponseEntity<Users> login( @PathVariable("username") String username,@PathVariable("password") String password ,HttpSession session){
+		Users user = userDAO.authuser(username,password);
 		if(user==null)
 			{	return null;
 	}else if(friendDAO.getfriendlist(username)==null){
@@ -35,8 +35,8 @@ public class LoginController {
 		session.setAttribute("username",user.getUsername());
 		user.setStatus('o');
 		userDAO.saveOrUpdate(user);
-		User users1=userDAO.oneuser(user.getId());
-		return new ResponseEntity<User>(users1,HttpStatus.OK);
+		Users users1=userDAO.oneuser(user.getId());
+		return new ResponseEntity<Users>(users1,HttpStatus.OK);
 	}else{
 		session.setAttribute("userLogged", user);
 		session.setAttribute("userid", user.getId());
@@ -49,15 +49,15 @@ public class LoginController {
     		online.setIsonline('y');
     		friendDAO.saveOrUpdate(online);
     	}
-		User user1=userDAO.oneuser(user.getId());
-		return new ResponseEntity<User>(user1,HttpStatus.OK);
+		Users user1=userDAO.oneuser(user.getId());
+		return new ResponseEntity<Users>(user1,HttpStatus.OK);
 	}
 	}
 	
 	@PostMapping("/logout")
-	public ResponseEntity<User> logout(HttpSession session){
+	public ResponseEntity<Users> logout(HttpSession session){
 		int uid =  (Integer) session.getAttribute("uid");
-		User user =userDAO.oneuser(uid);
+		Users user =userDAO.oneuser(uid);
 		user.setStatus('N');
 		userDAO.saveOrUpdate(user);
 		List<Friend> friend=friendDAO.setonline(user.getId());
@@ -67,6 +67,6 @@ public class LoginController {
     		friendDAO.saveOrUpdate(online);
     	}
 		session.invalidate();
-		return new ResponseEntity<User>(user,HttpStatus.OK);
+		return new ResponseEntity<Users>(user,HttpStatus.OK);
 	}
 }

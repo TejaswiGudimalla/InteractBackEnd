@@ -29,7 +29,7 @@ public class ForumController {
 		System.out.println("hello");
 		/*String name=forum.getName();
 		System.out.println(name);*/
-		int userid=(Integer) session.getAttribute("username");
+		String userid=(String) session.getAttribute("username");
 		forum.setStatus("n");
 		forum.setDoc(new Date());
 		forum.setUserid(userid);

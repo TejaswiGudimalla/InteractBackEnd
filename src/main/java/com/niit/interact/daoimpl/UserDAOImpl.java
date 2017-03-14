@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.interact.dao.UserDAO;
-import com.niit.interact.model.User;
+import com.niit.interact.model.Users;
 
 @SuppressWarnings({ "rawtypes", "unchecked", "deprecation" })
 @Repository
@@ -24,17 +24,17 @@ public class UserDAOImpl implements UserDAO {
 	}
 	
 	@Transactional
-	public List<User> list() {
+	public List<Users> list() {
 		String hql ="from UserInteract";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		return query.list();
 	}
 
 	@Transactional
-	public List<User> getuser(int id) {
+	public List<Users> getuser(int id) {
 		String hql="from UserInteract where id="+"'"+id+"'";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
-		List<User> list = query.list();
+		List<Users> list = query.list();
 		if(list==null){
 			return null;
 		}else{
@@ -43,10 +43,10 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Transactional
-	public User authuser(String username, String password) {
+	public Users authuser(String username, String password) {
 		String hql = "from UserInteract where id= '" + username + "' and password '" + password + "'";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
-		List<User> list = query.list();
+		List<Users> list = query.list();
 		/*if (list == null) {
 			return null;
 		} else {*/
@@ -55,7 +55,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Transactional
-	public boolean saveOrUpdate(User user) {
+	public boolean saveOrUpdate(Users user) {
 		try {
 			sessionFactory.getCurrentSession().saveOrUpdate(user);
 			return true;
@@ -67,7 +67,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Transactional
-	public boolean delete(User user) {
+	public boolean delete(Users user) {
 		try {
 			sessionFactory.getCurrentSession().delete(user);
 			return true;
@@ -78,10 +78,10 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Transactional
-	public User oneuser(int id) {
+	public Users oneuser(int id) {
 		String hql = "from UserInteract where id= " + "'" + id + "'";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
-		List<User> list = query.list();
+		List<Users> list = query.list();
 
 		if (list == null) {
 			return null;
@@ -90,18 +90,18 @@ public class UserDAOImpl implements UserDAO {
 		}
 	}
 	@Transactional
-	public List<User> nonfriends(int id) {
+	public List<Users> nonfriends(int id) {
 		String hql = "from UserInteract where id !='"+id+"'";
 		Query query=sessionFactory.getCurrentSession().createQuery(hql);
-		List<User> list= query.list();
+		List<Users> list= query.list();
 		return list;
 	}
 
 	@Transactional
-	public User profileof(String username) {
+	public Users profileof(String username) {
 		String hql = "from UserInteract where username='" + username + "'";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
-		List<User> list = query.list();
+		List<Users> list = query.list();
 
 		if (list == null) {
 			return null;

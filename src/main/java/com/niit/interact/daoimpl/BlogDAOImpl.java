@@ -12,11 +12,12 @@ import org.springframework.transaction.annotation.Transactional;
 import com.niit.interact.dao.BlogDAO;
 import com.niit.interact.model.Blog;
 
-@Repository(value = "blogDAO")
+@Repository
 public class BlogDAOImpl implements BlogDAO {
 
 	@Autowired
 	private SessionFactory sessionFactory;
+	
 	public BlogDAOImpl(SessionFactory sessionFactory) {
 		this.sessionFactory=sessionFactory;
 	}
@@ -81,6 +82,4 @@ public class BlogDAOImpl implements BlogDAO {
 		}
 	}
 	
-	
-
 }

@@ -14,25 +14,39 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.niit.interact.dao.BlogDAO;
+import com.niit.interact.dao.BlogLikesDAO;
+import com.niit.interact.dao.ForumCommentDAO;
+import com.niit.interact.dao.ForumDAO;
+import com.niit.interact.dao.FriendDAO;
+import com.niit.interact.dao.JobDAO;
+import com.niit.interact.dao.UserDAO;
+import com.niit.interact.daoimpl.BlogDAOImpl;
+import com.niit.interact.daoimpl.BlogLikesDAOImpl;
+import com.niit.interact.daoimpl.ForumCommentDAOImpl;
+import com.niit.interact.daoimpl.ForumDAOImpl;
+import com.niit.interact.daoimpl.FriendDAOImpl;
+import com.niit.interact.daoimpl.JobDAOImpl;
+import com.niit.interact.daoimpl.UserDAOImpl;
 import com.niit.interact.model.Blog;
 import com.niit.interact.model.BlogLikes;
 import com.niit.interact.model.Forum;
 import com.niit.interact.model.ForumComment;
 import com.niit.interact.model.Friend;
 import com.niit.interact.model.Job;
-import com.niit.interact.model.User;
+import com.niit.interact.model.Users;
 
 @Configuration
 @ComponentScan("com.niit.interact")
 @EnableTransactionManagement
 public class ApplicationContextConfig {
-	
+
 	@Bean(name = "dataSource")
 	public DataSource getDataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
 		dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:XE");
-		dataSource.setUsername("COLLAB_DB");
+		dataSource.setUsername("INTERACT_DB");
 		dataSource.setPassword("hr");
 
 		System.out.println("DataBase is connected.........!");
@@ -56,14 +70,14 @@ public class ApplicationContextConfig {
 		LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
 
 		sessionBuilder.addProperties(getHibernateProperties());
-		sessionBuilder.addAnnotatedClasses(User.class);
+		sessionBuilder.addAnnotatedClasses(Users.class);
 		sessionBuilder.addAnnotatedClasses(Blog.class);
 		sessionBuilder.addAnnotatedClasses(Friend.class);
 		sessionBuilder.addAnnotatedClasses(Job.class);
 		sessionBuilder.addAnnotatedClasses(Forum.class);
 		sessionBuilder.addAnnotatedClasses(ForumComment.class);
 		sessionBuilder.addAnnotatedClasses(BlogLikes.class);
-		 
+
 		System.out.println("Session is created................!");
 
 		return sessionBuilder.buildSessionFactory();
@@ -76,6 +90,55 @@ public class ApplicationContextConfig {
 		HibernateTransactionManager transactionManager = new HibernateTransactionManager(sessionFactory);
 		System.out.println("Transaction is crated............!");
 		return transactionManager;
+	}
+
+	@Autowired
+	@Bean(name = "userDAO")
+	public UserDAO getUserDao(SessionFactory sessionFactory) {
+		System.out.println("User is created.......!");
+		return new UserDAOImpl(sessionFactory);
+	}
+
+	@Autowired
+	@Bean(name = "blogDAO")
+	public BlogDAO getBlogDao(SessionFactory sessionFactory) {
+		System.out.println("blog is done");
+		return new BlogDAOImpl(sessionFactory);
+	}
+
+	@Autowired
+	@Bean(name = "friendDAO")
+	public FriendDAO getFriendDao(SessionFactory sessionFactory) {
+		System.out.println("Friend is done");
+		return new FriendDAOImpl(sessionFactory);
+	}
+
+	@Autowired
+	@Bean(name = "jobDAO")
+	public JobDAO getJobDao(SessionFactory sessionFactory) {
+		System.out.println("Job is done");
+		return new JobDAOImpl(sessionFactory);
+	}
+
+	@Autowired
+	@Bean(name = "forumDAO")
+	public ForumDAO getForumDao(SessionFactory sessionFactory) {
+		System.out.println("Forum is done");
+		return new ForumDAOImpl(sessionFactory);
+	}
+
+	@Autowired
+	@Bean(name = "forumCommentDAO")
+	public ForumCommentDAO getForumCommentDao(SessionFactory sessionFactory) {
+		System.out.println("Forum Comment is done");
+		return new ForumCommentDAOImpl(sessionFactory);
+	}
+
+	@Autowired
+	@Bean(name = "blogLikesDAO")
+	public BlogLikesDAO getBlogLikesDao(SessionFactory sessionFactory) {
+		System.out.println("BlogLikes is done");
+		return new BlogLikesDAOImpl(sessionFactory);
 	}
 
 }

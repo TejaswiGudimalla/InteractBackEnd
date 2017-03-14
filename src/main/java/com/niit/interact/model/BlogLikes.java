@@ -18,30 +18,37 @@ public class BlogLikes {
 	private int blogid;
 	private int userid;
 	private String likes;
-	
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public int getBlogid() {
 		return blogid;
 	}
+
 	public void setBlogid(int blogid) {
 		this.blogid = blogid;
 	}
+
 	public int getUserid() {
 		return userid;
 	}
+
 	public void setUserid(int userid) {
 		this.userid = userid;
 	}
+
 	public String getLikes() {
 		return likes;
 	}
+
 	public void setLikes(String likes) {
 		this.likes = likes;
 	}
-	
+
 }
