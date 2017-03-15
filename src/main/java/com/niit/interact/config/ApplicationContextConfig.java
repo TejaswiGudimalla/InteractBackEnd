@@ -46,10 +46,10 @@ public class ApplicationContextConfig {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
 		dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:XE");
-		dataSource.setUsername("INTERACT_DB");
+		dataSource.setUsername("interact_db");
 		dataSource.setPassword("hr");
 
-		System.out.println("DataBase is connected.........!");
+		System.out.println("Database is connected!");
 		return dataSource;
 
 	}
@@ -68,8 +68,8 @@ public class ApplicationContextConfig {
 	@Bean(name = "sessionFactory")
 	public SessionFactory getSessionFactory(DataSource dataSource) {
 		LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
-
 		sessionBuilder.addProperties(getHibernateProperties());
+
 		sessionBuilder.addAnnotatedClasses(Users.class);
 		sessionBuilder.addAnnotatedClasses(Blog.class);
 		sessionBuilder.addAnnotatedClasses(Friend.class);
@@ -78,7 +78,7 @@ public class ApplicationContextConfig {
 		sessionBuilder.addAnnotatedClasses(ForumComment.class);
 		sessionBuilder.addAnnotatedClasses(BlogLikes.class);
 
-		System.out.println("Session is created................!");
+		System.out.println("Session is crated................!");
 
 		return sessionBuilder.buildSessionFactory();
 
@@ -94,12 +94,14 @@ public class ApplicationContextConfig {
 
 	@Autowired
 	@Bean(name = "userDAO")
-	public UserDAO getUserDao(SessionFactory sessionFactory) {
+	public UserDAO getUsersDao(SessionFactory sessionFactory) {
 		System.out.println("User is created.......!");
 		return new UserDAOImpl(sessionFactory);
+
 	}
 
 	@Autowired
+
 	@Bean(name = "blogDAO")
 	public BlogDAO getBlogDao(SessionFactory sessionFactory) {
 		System.out.println("blog is done");
@@ -107,6 +109,7 @@ public class ApplicationContextConfig {
 	}
 
 	@Autowired
+
 	@Bean(name = "friendDAO")
 	public FriendDAO getFriendDao(SessionFactory sessionFactory) {
 		System.out.println("Friend is done");
@@ -114,6 +117,7 @@ public class ApplicationContextConfig {
 	}
 
 	@Autowired
+
 	@Bean(name = "jobDAO")
 	public JobDAO getJobDao(SessionFactory sessionFactory) {
 		System.out.println("Job is done");
@@ -121,6 +125,7 @@ public class ApplicationContextConfig {
 	}
 
 	@Autowired
+
 	@Bean(name = "forumDAO")
 	public ForumDAO getForumDao(SessionFactory sessionFactory) {
 		System.out.println("Forum is done");
@@ -128,6 +133,7 @@ public class ApplicationContextConfig {
 	}
 
 	@Autowired
+
 	@Bean(name = "forumCommentDAO")
 	public ForumCommentDAO getForumCommentDao(SessionFactory sessionFactory) {
 		System.out.println("Forum Comment is done");
@@ -135,6 +141,7 @@ public class ApplicationContextConfig {
 	}
 
 	@Autowired
+
 	@Bean(name = "blogLikesDAO")
 	public BlogLikesDAO getBlogLikesDao(SessionFactory sessionFactory) {
 		System.out.println("BlogLikes is done");

@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.niit.interact.dao.FriendDAO;
@@ -24,32 +24,32 @@ public class LoginController {
 	@Autowired
 	FriendDAO friendDAO;
 
-	@GetMapping("/login/{username}/{password}")
-	public ResponseEntity<Users> login( @PathVariable("username") String username,@PathVariable("password") String password ,HttpSession session){
-		Users user = userDAO.authuser(username,password);
-		if(user==null)
+	@GetMapping("/login/")
+	public ResponseEntity<Users> login( @RequestHeader("username") String username, @RequestHeader("password") String password ,HttpSession session){
+		Users users = userDAO.authuser(username,password);
+		if(users==null)
 			{	return null;
 	}else if(friendDAO.getfriendlist(username)==null){
-		session.setAttribute("userLogged", user);
-		session.setAttribute("userid", user.getId());
-		session.setAttribute("username",user.getUsername());
-		user.setStatus('o');
-		userDAO.saveOrUpdate(user);
-		Users users1=userDAO.oneuser(user.getId());
+		session.setAttribute("userLogged", users);
+		session.setAttribute("userid", users.getId());
+		session.setAttribute("username",users.getUsername());
+		users.setStatus('o');
+		userDAO.saveOrUpdate(users);
+		Users users1=userDAO.oneuser(users.getId());
 		return new ResponseEntity<Users>(users1,HttpStatus.OK);
 	}else{
-		session.setAttribute("userLogged", user);
-		session.setAttribute("userid", user.getId());
-		session.setAttribute("username",user.getUsername());
-		user.setStatus('o');
-		userDAO.saveOrUpdate(user);
-    	List<Friend> friend=friendDAO.setonline(user.getId());
+		session.setAttribute("userLogged", users);
+		session.setAttribute("userid", users.getId());
+		session.setAttribute("username",users.getUsername());
+		users.setStatus('o');
+		userDAO.saveOrUpdate(users);
+    	List<Friend> friend=friendDAO.setonline(users.getId());
     	for(int i=0;i<friend.size();i++){
     		Friend online=friend.get(i);
     		online.setIsonline('y');
     		friendDAO.saveOrUpdate(online);
     	}
-		Users user1=userDAO.oneuser(user.getId());
+		Users user1=userDAO.oneuser(users.getId());
 		return new ResponseEntity<Users>(user1,HttpStatus.OK);
 	}
 	}

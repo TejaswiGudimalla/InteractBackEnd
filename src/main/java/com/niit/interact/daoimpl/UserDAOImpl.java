@@ -2,6 +2,7 @@ package com.niit.interact.daoimpl;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +26,9 @@ public class UserDAOImpl implements UserDAO {
 	
 	@Transactional
 	public List<Users> list() {
-		String hql ="from UserInteract";
-		Query query = sessionFactory.getCurrentSession().createQuery(hql);
-		return query.list();
+		Criteria c = sessionFactory.getCurrentSession().createCriteria(Users.class);
+		List<Users> list = c.list();
+		return list;
 	}
 
 	@Transactional
@@ -44,7 +45,7 @@ public class UserDAOImpl implements UserDAO {
 
 	@Transactional
 	public Users authuser(String username, String password) {
-		String hql = "from UserInteract where id= '" + username + "' and password '" + password + "'";
+		String hql = "from UserInteract where id="+"'"+ username +"'"+" and password="+"'" + password + "'";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		List<Users> list = query.list();
 		/*if (list == null) {
@@ -55,9 +56,9 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Transactional
-	public boolean saveOrUpdate(Users user) {
+	public boolean saveOrUpdate(Users users) {
 		try {
-			sessionFactory.getCurrentSession().saveOrUpdate(user);
+			sessionFactory.getCurrentSession().saveOrUpdate(users);
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -67,9 +68,9 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Transactional
-	public boolean delete(Users user) {
+	public boolean delete(Users users) {
 		try {
-			sessionFactory.getCurrentSession().delete(user);
+			sessionFactory.getCurrentSession().delete(users);
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();

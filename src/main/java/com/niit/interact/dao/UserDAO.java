@@ -9,9 +9,9 @@ import com.niit.interact.model.Users;
 @Repository
 public interface UserDAO {
 
-	public boolean saveOrUpdate(Users user);
+	public boolean saveOrUpdate(Users users);
 
-	public boolean delete(Users user);
+	public boolean delete(Users users);
 
 	public List<Users> list();
 
