@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Entity
 @Table(name = "UserInteract")
 @Component
-public class Users {
+public class Users extends BaseDomain {
 
 	@Id
 	@GeneratedValue
@@ -95,7 +95,7 @@ public class Users {
 		return isonline;
 	}
 
-	public void setIs_online(char isonline) {
+	public void setIsonline(char isonline) {
 		this.isonline = isonline;
 	}
 

@@ -45,7 +45,7 @@ public class FriendController {
 	}
 	@GetMapping(value="/newrequests")
 	public ResponseEntity<List<Friend>> newrequests(HttpSession session){
-		int userid=(Integer) session.getAttribute("username");
+		String userid=(String) session.getAttribute("username");
 		List<Friend> list=friendDAO.getrequestlist(userid);
 		return new ResponseEntity<List<Friend>>(list,HttpStatus.OK);
 	}

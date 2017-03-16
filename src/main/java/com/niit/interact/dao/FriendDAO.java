@@ -15,8 +15,8 @@ public interface FriendDAO {
 	/*getfriendlist is list of friends that are accepted by the user*/
 	public List<Friend> getfriendlist(String userid);
 	
-	public List<Friend> getrequestlist(int userid);
+	public List<Friend> getrequestlist(String userid);
 	
-	public List<Friend> setonline(int userid);
+	public List<Friend> setonline(String userid);
 
 }

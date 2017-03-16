@@ -65,7 +65,7 @@ public class FriendDAOImpl implements FriendDAO {
    }
 
    @Transactional
-   public List<Friend> getrequestlist(int userid) {
+   public List<Friend> getrequestlist(String userid) {
    	String hql="from Friend where friendid='"+userid+"' and status='n'";
    	Query query=sessionFactory.getCurrentSession().createQuery(hql);
    	List<Friend> list = query.list();
@@ -73,7 +73,7 @@ public class FriendDAOImpl implements FriendDAO {
    }
 
    @Transactional
-   public List<Friend> setonline(int userid) {
+   public List<Friend> setonline(String userid) {
    	String hql="from Friend where friendid='"+userid+"'";
    	Query query = sessionFactory.getCurrentSession().createQuery(hql);
    	List<Friend> list=query.list();

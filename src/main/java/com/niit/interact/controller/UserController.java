@@ -27,7 +27,7 @@ public class UserController {
 	public ResponseEntity<Users> adduser(@RequestBody Users user) {
 		System.out.println("hello");
 		user.setStatus('n');
-		user.setIs_online('N');
+		user.setIsonline('N');
 		userDAO.saveOrUpdate(user);
 		return new ResponseEntity<Users>(user, HttpStatus.OK);
 
