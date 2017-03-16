@@ -19,7 +19,6 @@ public class BlogLikesDAOImpl implements BlogLikesDAO {
 	
 	@Autowired
 	private SessionFactory sessionFactory;
-	
 	public BlogLikesDAOImpl(SessionFactory sessionFactory) {
 		this.sessionFactory=sessionFactory;
 	}
@@ -49,8 +48,8 @@ public class BlogLikesDAOImpl implements BlogLikesDAO {
 
 	@SuppressWarnings("rawtypes")
 	@Transactional
-	public BlogLikes list(int userid, int blogid) {
-		String hql="from Bloglikes where blogid='"+blogid+"' and userid='"+userid+"'";
+	public BlogLikes list(int uid, int bid) {
+		String hql="from Bloglikes where blogid='"+bid+"' and userid='"+uid+"'";
 		Query query=sessionFactory.getCurrentSession().createQuery(hql);
         List<BlogLikes>list= query.list();
 		
@@ -71,6 +70,14 @@ public class BlogLikesDAOImpl implements BlogLikesDAO {
 		c.add(Restrictions.eq("blogid",bid));
 		List<BlogLikes> list=c.list();
         return list;
+	}
+	@Transactional
+	public List<BlogLikes> list(int uid) {
+//		Criteria c=sessionFactory.getCurrentSession().createCriteria(BlogLikes.class);
+		String hql = "from BlogLikes where userid ="+uid;
+		List<BlogLikes> list=sessionFactory.getCurrentSession().createQuery(hql).list();
+		System.err.println("featching BlogLikes..........!");
+		return list;
 	}
 
 }

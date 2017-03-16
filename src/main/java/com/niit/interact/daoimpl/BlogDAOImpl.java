@@ -12,20 +12,18 @@ import org.springframework.transaction.annotation.Transactional;
 import com.niit.interact.dao.BlogDAO;
 import com.niit.interact.model.Blog;
 
-@Repository
+@Repository(value="blogDAO")
 public class BlogDAOImpl implements BlogDAO {
-
 	@Autowired
 	private SessionFactory sessionFactory;
-	
 	public BlogDAOImpl(SessionFactory sessionFactory) {
 		this.sessionFactory=sessionFactory;
 	}
-	
-	@Transactional
+@Transactional
 	public boolean saveOrUpdate(Blog blog) {
 		try {
 			sessionFactory.getCurrentSession().saveOrUpdate(blog);
+			System.err.println("Blog is saved.........!");
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -37,19 +35,29 @@ public class BlogDAOImpl implements BlogDAO {
 	public boolean delete(Blog blog) {
 		try {
 			sessionFactory.getCurrentSession().delete(blog);
+			System.err.println("Blog is delete....!");
+
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
 	}
-
-	@SuppressWarnings({ "rawtypes", "deprecation", "unchecked" })
+	@SuppressWarnings({ "deprecation", "unchecked" })
+	@Transactional
+	public List<Blog> list() {
+		Criteria c=sessionFactory.getCurrentSession().createCriteria(Blog.class);
+		List<Blog> list=c.list();
+		return list;
+	}
+	
+	@SuppressWarnings({ "rawtypes", "unchecked", "deprecation" })
 	@Transactional
 	public Blog get(int id) {
 		String hql = "from Blog where id='"+ id+"'" ;
 		Query query=sessionFactory.getCurrentSession().createQuery(hql);
 		List<Blog>list= query.list();
+		
 		if(list==null)
 		{
 			return null;
@@ -59,27 +67,20 @@ public class BlogDAOImpl implements BlogDAO {
 			return list.get(0);
 		}
 	}
-
-	@SuppressWarnings({ "unchecked", "deprecation" })
-	@Transactional
-	public List<Blog> list() {
-		Criteria c=sessionFactory.getCurrentSession().createCriteria(Blog.class);
-		List<Blog> list=c.list();
-		return list;
-	}
-
-	@SuppressWarnings({ "deprecation", "unchecked", "rawtypes" })
+	@SuppressWarnings({ "rawtypes", "deprecation", "unchecked" })
 	@Transactional
 	public List<Blog> userlist() {
 		String hql= "from Blog where status='a'";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		List<Blog> list=query.list();
 		if(list==null){
-			return null;
+		return null;
 		}
 		else{
 			return list;
+		
 		}
 	}
+
 	
 }

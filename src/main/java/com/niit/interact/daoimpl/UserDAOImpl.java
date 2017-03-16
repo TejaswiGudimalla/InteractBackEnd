@@ -1,10 +1,9 @@
 package com.niit.interact.daoimpl;
-
 import java.util.List;
 
 import org.hibernate.Criteria;
-import org.hibernate.Query;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,18 +11,41 @@ import org.springframework.transaction.annotation.Transactional;
 import com.niit.interact.dao.UserDAO;
 import com.niit.interact.model.Users;
 
-@SuppressWarnings({ "rawtypes", "unchecked", "deprecation" })
+
 @Repository
 public class UserDAOImpl implements UserDAO {
-
 	@Autowired
 	private SessionFactory sessionFactory;
-	
-	public UserDAOImpl(SessionFactory sessionFactory)
-	{
+
+	public UserDAOImpl(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-	
+
+	@Transactional
+	public boolean saveOrUpdate(Users users) {
+		try {
+			sessionFactory.getCurrentSession().saveOrUpdate(users);
+
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	@Transactional
+	public boolean delete(Users users) {
+		try {
+			sessionFactory.getCurrentSession().delete(users);
+
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	@SuppressWarnings({ "deprecation", "unchecked" })
 	@Transactional
 	public List<Users> list() {
 		Criteria c = sessionFactory.getCurrentSession().createCriteria(Users.class);
@@ -31,80 +53,67 @@ public class UserDAOImpl implements UserDAO {
 		return list;
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked", "deprecation" })
 	@Transactional
 	public List<Users> getuser(int id) {
-		String hql="from UserInteract where id="+"'"+id+"'";
-		Query query = sessionFactory.getCurrentSession().createQuery(hql);
-		List<Users> list = query.list();
-		if(list==null){
-			return null;
-		}else{
-			return list;
-		}
-	}
-
-	@Transactional
-	public Users authuser(String username, String password) {
-		String hql = "from UserInteract where id="+"'"+ username +"'"+" and password="+"'" + password + "'";
-		Query query = sessionFactory.getCurrentSession().createQuery(hql);
-		List<Users> list = query.list();
-		/*if (list == null) {
-			return null;
-		} else {*/
-			return list.get(0);
-		/*}*/
-	}
-
-	@Transactional
-	public boolean saveOrUpdate(Users users) {
-		try {
-			sessionFactory.getCurrentSession().saveOrUpdate(users);
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-		
-	}
-
-	@Transactional
-	public boolean delete(Users users) {
-		try {
-			sessionFactory.getCurrentSession().delete(users);
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-	}
-
-	@Transactional
-	public Users oneuser(int id) {
-		String hql = "from UserInteract where id= " + "'" + id + "'";
+		String hql = "from Users where id= " + "'" + id + "'";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		List<Users> list = query.list();
 
 		if (list == null) {
 			return null;
 		} else {
+			return list;
+		}
+	}
+
+	@SuppressWarnings({ "rawtypes", "deprecation", "unchecked" })
+	@Transactional
+	public Users authuser(String username, String password) {
+		String hql = "from Users where username= " + "'" + username + "'" + "and password= " + "'" + password + "'";
+
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		List<Users> list = query.list();
+		if (list.isEmpty()) {
+			return null;	
+			}
+		else {
 			return list.get(0);
 		}
 	}
+	
+	@SuppressWarnings({ "rawtypes", "deprecation", "unchecked" })
+	@Transactional
+	public Users oneuser(int id) {
+		String hql = "from Users where id= " + "'" + id + "'";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+
+		List<Users> list = query.list();
+
+		if (list.isEmpty()) {
+			return null;
+		} else {
+			return list.get(0);
+		}
+	}
+
+	@SuppressWarnings({ "rawtypes", "deprecation", "unchecked" })
 	@Transactional
 	public List<Users> nonfriends(int id) {
-		String hql = "from UserInteract where id !='"+id+"'";
-		Query query=sessionFactory.getCurrentSession().createQuery(hql);
-		List<Users> list= query.list();
+		String hql = "from Users where id !='" + id + "'";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		List<Users> list = query.list();
 		return list;
 	}
 
+	@SuppressWarnings({ "rawtypes", "deprecation", "unchecked" })
 	@Transactional
 	public Users profileof(String username) {
-		String hql = "from UserInteract where username='" + username + "'";
+		String hql = "from Users where username='" + username + "'";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		List<Users> list = query.list();
 
-		if (list == null) {
+		if (list.isEmpty()) {
 			return null;
 		} else {
 			return list.get(0);

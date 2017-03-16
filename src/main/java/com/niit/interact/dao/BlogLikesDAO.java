@@ -10,5 +10,6 @@ public interface BlogLikesDAO {
 	public boolean delete(BlogLikes blogLikes);
 	public BlogLikes list(int uid,int bid);
 	public List<BlogLikes> bloglist(int bid);
+	public List<BlogLikes> list(int uid);
 	
 }

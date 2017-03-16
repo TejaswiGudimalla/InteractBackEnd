@@ -22,22 +22,25 @@ public class UserController {
 	
 	@Autowired
 	private UserDAO userDAO;
+	/*@Autowired
+	private Users users;*/
 
 	@PostMapping(value = "/register")
-	public ResponseEntity<Users> adduser(@RequestBody Users user) {
+	public ResponseEntity<Users> adduser(@RequestBody Users users) {
 		System.out.println("hello");
-		user.setStatus('n');
-		user.setIsonline('N');
-		userDAO.saveOrUpdate(user);
-		return new ResponseEntity<Users>(user, HttpStatus.OK);
+		users.setStatus('n');
+		users.setIsonline('N');
+		userDAO.saveOrUpdate(users);
+		return new ResponseEntity<Users>(users, HttpStatus.OK);
 
 	}
 
 	@GetMapping(value = "/users")
 	public ResponseEntity<List<Users>> listuser() {
 		System.out.println("list of users");
-		List<Users> user1 = userDAO.list();
-		return new ResponseEntity<List<Users>>(user1, HttpStatus.OK);
+		List<Users> users1 = userDAO.list();
+	
+		return new ResponseEntity<List<Users>>(users1, HttpStatus.OK);
 	}
 
 	@GetMapping(value = "/oneuser")
@@ -46,28 +49,38 @@ public class UserController {
 		Users oneuser = userDAO.profileof(username);
 		return new ResponseEntity<Users>(oneuser, HttpStatus.OK);
 	}
-	
+
 	@PostMapping("/imageUpload")
-	public void ImageUpload(@RequestBody MultipartFile file,HttpSession session) throws IOException {
-		
-		String username = (String) session.getAttribute("username"); /*Get Logged in Username*/
-		Users user=userDAO.profileof(username);					/*Get user object based on username*/
-		System.out.println(file.getContentType()+'\n'+file.getName()+'\n'+file.getSize()+'\n'+file.getOriginalFilename());
-		user.setImage(file.getBytes());
-		userDAO.saveOrUpdate(user);
+	public void ImageUpload(@RequestBody MultipartFile file, HttpSession session) throws IOException {
+
+		String username = (String) session
+				.getAttribute("username"); /* Get Logged in Username */
+		Users users = userDAO
+				.profileof(username); /* Get user object based on username */
+		System.out.println(file.getContentType() + '\n' + file.getName() + '\n' + file.getSize() + '\n'
+				+ file.getOriginalFilename());
+		users.setImage(file.getBytes());
+		userDAO.saveOrUpdate(users);
 	}
 
 	@GetMapping("/profileimage")
-	public ResponseEntity<Users> profileimage(HttpSession session){
-		int userid=(Integer) session.getAttribute("userid");
-		Users user=userDAO.oneuser(userid);
-		return new ResponseEntity<Users>(user, HttpStatus.OK);
+	public ResponseEntity<Users> profileimage(HttpSession session) {
+		int uid = (Integer) session.getAttribute("uid");
+		Users users = userDAO.oneuser(uid);
+		return new ResponseEntity<Users>(users, HttpStatus.OK);
 	}
+
 	@GetMapping("/nonfriends")
-	public ResponseEntity<List<Users>> nonfriends(HttpSession session){
-		int userid=(Integer) session.getAttribute("userid");
-		List<Users> nonfriends=userDAO.nonfriends(userid);
-		return new ResponseEntity<List<Users>>(nonfriends,HttpStatus.OK);
+	public ResponseEntity<List<Users>> nonfriends(HttpSession session) {
+		int uid = (Integer) session.getAttribute("uid");
+		List<Users> nonfriends = userDAO.nonfriends(uid);
+		return new ResponseEntity<List<Users>>(nonfriends, HttpStatus.OK);
+	}
+
+	@GetMapping("/hello")
+	public  String sayhello()
+	{
+		return ("hello i am mukesh");
 	}
 
 }
