@@ -6,12 +6,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class BaseDomain {
-	
 	@Transient
 	public String errorCode;
 	@Transient
 	public String errorMessage;
-	
 	public String getErrorCode() {
 		return errorCode;
 	}

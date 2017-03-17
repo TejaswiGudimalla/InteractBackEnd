@@ -1,8 +1,8 @@
-com\niit\interact\daoimpl\UserDAOImpl.class
 com\niit\interact\model\Friend.class
 com\niit\interact\model\Job.class
 com\niit\interact\model\OutputMessage.class
 com\niit\interact\daoimpl\JobDAOImpl.class
+com\niit\interact\dao\UsersDAO.class
 com\niit\interact\controller\JobController.class
 com\niit\interact\daoimpl\ForumCommentDAOImpl.class
 com\niit\interact\daoimpl\BlogLikesDAOImpl.class
@@ -21,12 +21,12 @@ com\niit\interact\controller\FriendController.class
 com\niit\interact\daoimpl\BlogDAOImpl.class
 com\niit\interact\model\BlogLikes.class
 com\niit\interact\controller\BlogController.class
+com\niit\interact\daoimpl\UsersDAOImpl.class
 com\niit\interact\dao\BlogDAO.class
-com\niit\interact\controller\UserController.class
 com\niit\interact\model\Forum.class
-com\niit\interact\dao\UserDAO.class
 com\niit\interact\controller\ForumController.class
 com\niit\interact\model\Users.class
+com\niit\interact\controller\UsersController.class
 com\niit\interact\controller\ForumCommentController.class
 com\niit\interact\dao\BlogLikesDAO.class
 com\niit\interact\dao\JobDAO.class

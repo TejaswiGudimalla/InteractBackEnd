@@ -6,13 +6,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
 import org.springframework.stereotype.Component;
 
 @Entity
 @Table(name = "UserInteract")
 @Component
-public class Users extends BaseDomain {
+public class Users extends BaseDomain{
 
 	@Id
 	@GeneratedValue
@@ -28,7 +27,7 @@ public class Users extends BaseDomain {
 	private String role;
 	private char isonline;
 	private byte[] image;
-
+	
 	public int getId() {
 		return id;
 	}

@@ -20,14 +20,14 @@ import com.niit.interact.dao.ForumCommentDAO;
 import com.niit.interact.dao.ForumDAO;
 import com.niit.interact.dao.FriendDAO;
 import com.niit.interact.dao.JobDAO;
-import com.niit.interact.dao.UserDAO;
+import com.niit.interact.dao.UsersDAO;
 import com.niit.interact.daoimpl.BlogDAOImpl;
 import com.niit.interact.daoimpl.BlogLikesDAOImpl;
 import com.niit.interact.daoimpl.ForumCommentDAOImpl;
 import com.niit.interact.daoimpl.ForumDAOImpl;
 import com.niit.interact.daoimpl.FriendDAOImpl;
 import com.niit.interact.daoimpl.JobDAOImpl;
-import com.niit.interact.daoimpl.UserDAOImpl;
+import com.niit.interact.daoimpl.UsersDAOImpl;
 import com.niit.interact.model.Blog;
 import com.niit.interact.model.BlogLikes;
 import com.niit.interact.model.Forum;
@@ -93,10 +93,10 @@ public class ApplicationContextConfig {
 	}
 
 	@Autowired
-	@Bean(name = "userDAO")
-	public UserDAO getUsersDao(SessionFactory sessionFactory) {
+	@Bean(name = "usersDAO")
+	public UsersDAO getUsersDao(SessionFactory sessionFactory) {
 		System.out.println("User is created.......!");
-		return new UserDAOImpl(sessionFactory);
+		return new UsersDAOImpl(sessionFactory);
 
 	}
 

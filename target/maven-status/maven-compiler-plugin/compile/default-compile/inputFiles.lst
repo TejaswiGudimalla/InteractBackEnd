@@ -1,3 +1,4 @@
+F:\workspace\InteractBackEnd\src\main\java\com\niit\interact\dao\UsersDAO.java
 F:\workspace\InteractBackEnd\src\main\java\com\niit\interact\model\Friend.java
 F:\workspace\InteractBackEnd\src\main\java\com\niit\interact\config\WebSocketConfig.java
 F:\workspace\InteractBackEnd\src\main\java\com\niit\interact\controller\FriendController.java
@@ -6,14 +7,12 @@ F:\workspace\InteractBackEnd\src\main\java\com\niit\interact\controller\BlogCont
 F:\workspace\InteractBackEnd\src\main\java\com\niit\interact\model\Message.java
 F:\workspace\InteractBackEnd\src\main\java\com\niit\interact\daoimpl\BlogDAOImpl.java
 F:\workspace\InteractBackEnd\src\main\java\com\niit\interact\model\OutputMessage.java
-F:\workspace\InteractBackEnd\src\main\java\com\niit\interact\dao\UserDAO.java
 F:\workspace\InteractBackEnd\src\main\java\com\niit\interact\controller\ForumController.java
 F:\workspace\InteractBackEnd\src\main\java\com\niit\interact\dao\BlogLikesDAO.java
 F:\workspace\InteractBackEnd\src\main\java\com\niit\interact\daoimpl\FriendDAOImpl.java
 F:\workspace\InteractBackEnd\src\main\java\com\niit\interact\daoimpl\JobDAOImpl.java
 F:\workspace\InteractBackEnd\src\main\java\com\niit\interact\model\Job.java
 F:\workspace\InteractBackEnd\src\main\java\com\niit\interact\dao\ForumCommentDAO.java
-F:\workspace\InteractBackEnd\src\main\java\com\niit\interact\daoimpl\UserDAOImpl.java
 F:\workspace\InteractBackEnd\src\main\java\com\niit\interact\dao\JobDAO.java
 F:\workspace\InteractBackEnd\src\main\java\com\niit\interact\model\BaseDomain.java
 F:\workspace\InteractBackEnd\src\main\java\com\niit\interact\config\ApplicationContextConfig.java
@@ -23,10 +22,11 @@ F:\workspace\InteractBackEnd\src\main\java\com\niit\interact\model\BlogLikes.jav
 F:\workspace\InteractBackEnd\src\main\java\com\niit\interact\daoimpl\ForumCommentDAOImpl.java
 F:\workspace\InteractBackEnd\src\main\java\com\niit\interact\dao\ForumDAO.java
 F:\workspace\InteractBackEnd\src\main\java\com\niit\interact\daoimpl\BlogLikesDAOImpl.java
+F:\workspace\InteractBackEnd\src\main\java\com\niit\interact\daoimpl\UsersDAOImpl.java
 F:\workspace\InteractBackEnd\src\main\java\com\niit\interact\controller\LoginController.java
 F:\workspace\InteractBackEnd\src\main\java\com\niit\interact\model\Forum.java
-F:\workspace\InteractBackEnd\src\main\java\com\niit\interact\controller\UserController.java
 F:\workspace\InteractBackEnd\src\main\java\com\niit\interact\model\Users.java
+F:\workspace\InteractBackEnd\src\main\java\com\niit\interact\controller\UsersController.java
 F:\workspace\InteractBackEnd\src\main\java\com\niit\interact\model\ForumComment.java
 F:\workspace\InteractBackEnd\src\main\java\com\niit\interact\daoimpl\ForumDAOImpl.java
 F:\workspace\InteractBackEnd\src\main\java\com\niit\interact\controller\ChatController.java
