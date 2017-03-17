@@ -10,7 +10,7 @@ public interface FriendDAO {
 	
 	public boolean delete(Friend friend);
 	
-	public Friend newrequest(String userid,int friendid);
+	public Friend newrequest(String userid,String friendid);
 	
 	/*getfriendlist is list of friends that are accepted by the user*/
 	public List<Friend> getfriendlist(String userid);

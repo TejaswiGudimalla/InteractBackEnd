@@ -16,7 +16,7 @@ public class Friend {
 	@GeneratedValue
 	private int id;
 	private String userid;
-	private int friendid;
+	private String friendid;
 	private char status;
 	private char isonline;
 
@@ -28,11 +28,11 @@ public class Friend {
 		this.userid = userid;
 	}
 
-	public int getFriendid() {
+	public String getFriendid() {
 		return friendid;
 	}
 
-	public void setFriendid(int friendid) {
+	public void setFriendid(String friendid) {
 		this.friendid = friendid;
 	}
 
